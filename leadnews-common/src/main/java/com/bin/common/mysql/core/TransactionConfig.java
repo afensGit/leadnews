@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
@@ -24,10 +25,12 @@ import javax.sql.DataSource;
 @Setter
 @Getter
 @Aspect
+//开启自动代理
 @EnableAspectJAutoProxy
+//开启自动事务处理
 @EnableTransactionManagement
 @Configuration
-@ConfigurationProperties(prefix="mysql.core")
+@ConfigurationProperties(prefix = "mysql.core")
 @PropertySource("classpath:mysql-core-jdbc.properties")
 public class TransactionConfig {
 
@@ -38,7 +41,7 @@ public class TransactionConfig {
      * @param dataSource
      * @return
      */
-    @Bean
+    @Bean("mysqlCoreDataSourceTransactionManager")
     public DataSourceTransactionManager mysqlCoreDataSourceTransactionManager(@Qualifier("mysqlCoreDataSource") DataSource dataSource){
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(dataSource);
@@ -50,7 +53,7 @@ public class TransactionConfig {
      * @param dataSourceTransactionManager
      * @return
      */
-    @Bean
+    @Bean("mysqlCoreDataSourceTxAdvice")
     public TransactionInterceptor mysqlCoreDataSourceTxAdvice(@Qualifier("mysqlCoreDataSourceTransactionManager") DataSourceTransactionManager dataSourceTransactionManager) {
         // 默认事务
         DefaultTransactionAttribute defAttr = new DefaultTransactionAttribute(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -76,7 +79,7 @@ public class TransactionConfig {
         return new TransactionInterceptor(dataSourceTransactionManager, source);
     }
 
-    @Bean
+    @Bean("txAdviceAdvisor")
     public Advisor txAdviceAdvisor(@Qualifier("mysqlCoreDataSourceTxAdvice") TransactionInterceptor mysqlCoreDataSourceTxAdvice) {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression(txScanPackage);

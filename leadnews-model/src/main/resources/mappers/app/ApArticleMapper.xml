@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heima.model.mappers.app.ApArticleMapper">
+<mapper namespace="com.bin.model.mappers.app.ApArticleMapper">
     <resultMap id="resultMap" type="com.bin.model.article.pojos.ApArticle">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
@@ -87,7 +87,9 @@
 
     <!-- 依据地理位置获取 -->
     <select id="loadArticleListByLocation" resultMap="resultMap">
-        select * from ap_article a
+        select
+        <include refid="Base_Column_List"/>
+        from ap_article a
         <where>
             <if test="dto.provinceId!=null">
                 and a.province_id=#{dto.provinceId}
@@ -114,7 +116,9 @@
 
     <!-- 以及文章IDS列表获取文章数据 -->
     <select id="loadArticleListByIdList" resultMap="resultMap">
-        select * from ap_article where id in(
+        select
+        <include refid="Base_Column_List"/>
+         from ap_article where id in(
         <trim prefix="" suffixOverrides=",">
             <foreach item="item" collection="list" separator=",">
                 #{item.articleId},
@@ -141,7 +145,7 @@
         where author_id = #{apAuthorId}
     </select>
 
-    <insert id="insert" parameterType="com.heima.model.article.pojos.ApArticle">
+    <insert id="insert" parameterType="com.bin.model.article.pojos.ApArticle">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyColumn="id" keyProperty="id">
             select last_insert_id()
         </selectKey>

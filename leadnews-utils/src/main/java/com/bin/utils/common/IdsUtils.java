@@ -8,7 +8,9 @@ import javax.crypto.spec.SecretKeySpec;
  * 数字ID混淆器，用于前后端数据通信时候的处理
  */
 public class IdsUtils {
-
+    /**
+     * 采用AES加密
+     */
     private static final String KEY_AES = "AES";
     private static final String KEY_SECART = "12345678901234561234567890123456";
 

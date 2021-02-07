@@ -4,10 +4,12 @@ import com.bin.model.article.dtos.ArticleHomeDto;
 import com.bin.model.article.pojos.ApArticle;
 import com.bin.model.article.pojos.ApArticleSDto;
 import com.bin.model.user.pojos.ApUserArticleList;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface ApArticleMapper {
 
 

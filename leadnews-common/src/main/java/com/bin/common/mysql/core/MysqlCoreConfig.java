@@ -48,11 +48,11 @@ public class MysqlCoreConfig {
         hikariDataSource.setUsername(this.getJdbcUserName());
         hikariDataSource.setPassword(this.getRealPassword());
         hikariDataSource.setJdbcUrl(this.getJdbcUrl());
+        hikariDataSource.setDriverClassName(this.getJdbcDriver());
         //最大连接数
         hikariDataSource.setMaximumPoolSize(50);
         //最小连接数
         hikariDataSource.setMinimumIdle(5);
-        hikariDataSource.setDriverClassName(this.getJdbcDriver());
         return hikariDataSource;
     }
 
@@ -64,11 +64,16 @@ public class MysqlCoreConfig {
      */
     @Bean
     public SqlSessionFactoryBean mysqlCoreSqlSessionFactory(@Qualifier("mysqlCoreDataSource") DataSource mysqlCoreDataSource) throws IOException {
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        //配置数据源
         sessionFactory.setDataSource(mysqlCoreDataSource);
+        //mapper文件存储位置
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sessionFactory.setMapperLocations(resolver.getResources(this.getMapperFilePath()));
+        //别名包
         sessionFactory.setTypeAliasesPackage(this.getAliasesPackage());
+        //开启驼峰标识
         org.apache.ibatis.session.Configuration mybatisConf = new org.apache.ibatis.session.Configuration();
         mybatisConf.setMapUnderscoreToCamelCase(true);
         sessionFactory.setConfiguration(mybatisConf);

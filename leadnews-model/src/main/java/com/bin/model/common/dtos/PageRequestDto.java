@@ -3,6 +3,10 @@ package com.bin.model.common.dtos;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 想输出日志时，如果不想每个类都写private static Logger logger = new LoggerFactory.getLogger(xxxx.class)
+ * 可以使用@Slf4j注解
+ */
 @Data
 @Slf4j
 public class PageRequestDto {

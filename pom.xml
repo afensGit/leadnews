@@ -15,6 +15,8 @@
         <module>leadnews-model</module>
         <module>leadnews-apis</module>
         <module>tests</module>
+        <module>leadnews-article</module>
+        <module>leadnews-behavior</module>
     </modules>
     <packaging>pom</packaging>
 
