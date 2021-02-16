@@ -49,10 +49,16 @@ public class MysqlCoreConfig {
         hikariDataSource.setPassword(this.getRealPassword());
         hikariDataSource.setJdbcUrl(this.getJdbcUrl());
         hikariDataSource.setDriverClassName(this.getJdbcDriver());
+        //hikariDataSource.setConnectionTimeout(60000);
+        //hikariDataSource.setValidationTimeout(3000);
+        //hikariDataSource.setIdleTimeout(60000);
+        //hikariDataSource.setMinimumIdle(10);
+        //hikariDataSource.setLoginTimeout(5);
         //最大连接数
         hikariDataSource.setMaximumPoolSize(50);
         //最小连接数
         hikariDataSource.setMinimumIdle(5);
+
         return hikariDataSource;
     }
 

@@ -35,7 +35,7 @@ public class ArticleHomeController implements ArticleHomeControllerApi {
     }
 
     @Override
-    @GetMapping("loadnews")
+    @GetMapping("loadnew")
     public ResponseResult loadNews(ArticleHomeDto dto, Short type) {
         return articleHomeService.load(dto, ArticleContants.LOAD_NEW);
     }

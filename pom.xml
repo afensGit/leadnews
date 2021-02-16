@@ -17,6 +17,7 @@
         <module>tests</module>
         <module>leadnews-article</module>
         <module>leadnews-behavior</module>
+        <module>service-mycat</module>
     </modules>
     <packaging>pom</packaging>
 

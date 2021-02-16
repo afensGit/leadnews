@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="leadnews-utils" />
         <module name="leadnews-common" />
         <module name="leadnews-article" />
         <module name="leadnews-behavior" />
         <module name="tests" />
+        <module name="service-mycat" />
+        <module name="leadnews-utils" />
         <module name="leadnews-model" />
         <module name="leadnews-apis" />
       </profile>
@@ -24,6 +25,7 @@
       <module name="leadnews-common" options="-parameters" />
       <module name="leadnews-model" options="-parameters" />
       <module name="leadnews-utils" options="-parameters" />
+      <module name="service-mycat" options="-parameters" />
       <module name="tests" options="-parameters" />
     </option>
   </component>
