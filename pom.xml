@@ -18,6 +18,9 @@
         <module>leadnews-article</module>
         <module>leadnews-behavior</module>
         <module>service-mycat</module>
+        <module>leadnews-user</module>
+        <module>leadnews-login</module>
+        <module>leadnews-media</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -58,7 +61,7 @@
         <baidu.version>4.11.1</baidu.version>
         <junit.version>4.12</junit.version>
         <searchbox.version>6.3.1</searchbox.version>
-        <elasticsearch.version>7.2.0</elasticsearch.version>
+        <elasticsearch.version>7.6.1</elasticsearch.version>
         <ali.core.version>4.1.1</ali.core.version>
         <ali.green.version>3.4.1</ali.green.version>
         <kafka.version>2.2.7.RELEASE</kafka.version>
@@ -226,6 +229,7 @@
                     <type>pom</type>
                     <scope>import</scope>
                 </dependency>
+
                 <!-- spring boot admin -->
                 <dependency>
                     <groupId>de.codecentric</groupId>
@@ -337,24 +341,24 @@
                     <useDefaultDelimiters>true</useDefaultDelimiters>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions><!--$NO-MVN-MAN-VER$-->
-                <configuration>
-                    <dotGitDirectory>../../.git</dotGitDirectory>
-                    <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
-                    <useNativeGit>true</useNativeGit>
-                    <abbrevLength>8</abbrevLength>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>pl.project13.maven</groupId>-->
+<!--                <artifactId>git-commit-id-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>revision</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>&lt;!&ndash;$NO-MVN-MAN-VER$&ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    <dotGitDirectory>../../.git</dotGitDirectory>-->
+<!--                    <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>-->
+<!--                    <useNativeGit>true</useNativeGit>-->
+<!--                    <abbrevLength>8</abbrevLength>-->
+<!--                    <generateGitPropertiesFile>true</generateGitPropertiesFile>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <!-- PMD插件 -->
         </plugins>
         <resources>

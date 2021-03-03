@@ -254,7 +254,7 @@
 	<dataHost name="HOST0" maxCon="600" minCon="200" balance="0"
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
-		<writeHost host="HOST0_M" url="139.196.147.110:3306" user="root" password="root"/>
+		<writeHost host="HOST0_M" url="127.0.0.1:3307" user="root" password="root"/>
 	</dataHost>
 
 </mycat:schema>

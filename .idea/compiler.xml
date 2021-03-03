@@ -7,10 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="leadnews-common" />
+        <module name="leadnews-media" />
         <module name="leadnews-article" />
         <module name="leadnews-behavior" />
         <module name="tests" />
+        <module name="leadnews-login" />
         <module name="service-mycat" />
+        <module name="leadnews-user" />
         <module name="leadnews-utils" />
         <module name="leadnews-model" />
         <module name="leadnews-apis" />
@@ -23,7 +26,10 @@
       <module name="leadnews-article" options="-parameters" />
       <module name="leadnews-behavior" options="-parameters" />
       <module name="leadnews-common" options="-parameters" />
+      <module name="leadnews-login" options="-parameters" />
+      <module name="leadnews-media" options="-parameters" />
       <module name="leadnews-model" options="-parameters" />
+      <module name="leadnews-user" options="-parameters" />
       <module name="leadnews-utils" options="-parameters" />
       <module name="service-mycat" options="-parameters" />
       <module name="tests" options="-parameters" />

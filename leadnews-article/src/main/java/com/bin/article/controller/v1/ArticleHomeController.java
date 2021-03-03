@@ -6,9 +6,7 @@ import com.bin.common.article.contants.ArticleContants;
 import com.bin.model.article.dtos.ArticleHomeDto;
 import com.bin.model.common.dtos.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author huangbin
@@ -23,20 +21,20 @@ public class ArticleHomeController implements ArticleHomeControllerApi {
     private ArticleHomeService articleHomeService;
 
     @Override
-    @GetMapping("load")
-    public ResponseResult load(ArticleHomeDto dto) {
+    @PostMapping("load")
+    public ResponseResult load(@RequestBody ArticleHomeDto dto) {
         return articleHomeService.load(dto, ArticleContants.LOAD_MORE);
     }
 
     @Override
-    @GetMapping("loadmore")
-    public ResponseResult loadMore(ArticleHomeDto dto, Short type) {
+    @PostMapping("loadmore")
+    public ResponseResult loadMore(@RequestBody ArticleHomeDto dto) {
         return articleHomeService.load(dto, ArticleContants.LOAD_MORE);
     }
 
     @Override
-    @GetMapping("loadnew")
-    public ResponseResult loadNews(ArticleHomeDto dto, Short type) {
+    @PostMapping("loadnew")
+    public ResponseResult loadNews(@RequestBody ArticleHomeDto dto) {
         return articleHomeService.load(dto, ArticleContants.LOAD_NEW);
     }
 }

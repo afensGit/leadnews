@@ -17,6 +17,7 @@ public class BurstRuleAlgorithm extends AbstractPartitionAlgorithm implements Ru
     //分片模
     private Integer mod;
 
+    public void init(){}
     /**
      * **分片ID =** **（dataId/volume）* step +分表ID/mod **
      * @param columnValue
@@ -31,7 +32,7 @@ public class BurstRuleAlgorithm extends AbstractPartitionAlgorithm implements Ru
                     Long dataId = Long.valueOf(temp[0]);
                     Long burstId = Long.valueOf(temp[1]);
                     int group = (int) ((dataId / volume) * step);
-                    int pos = (int) (group + burstId / mod);
+                    int pos = group + (int)(burstId % mod);
                     System.out.println("HEIMA RULE INFO ["+columnValue+"]-[{"+pos+"}]");
                     return pos;
                 } catch (NumberFormatException e) {

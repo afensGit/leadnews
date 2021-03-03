@@ -20,16 +20,14 @@ public interface ArticleHomeControllerApi {
     /**
      * 加载更多文章
      * @param dto
-     * @param type
      * @return
      */
-    public ResponseResult loadMore( ArticleHomeDto dto, Short type);
+    public ResponseResult loadMore( ArticleHomeDto dto);
 
     /**
      * 加载最新文章
      * @param dto
-     * @param type
      * @return
      */
-    public ResponseResult loadNews(ArticleHomeDto dto, Short type);
+    public ResponseResult loadNews(ArticleHomeDto dto);
 }

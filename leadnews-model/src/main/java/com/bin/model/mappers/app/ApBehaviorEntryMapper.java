@@ -13,5 +13,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ApBehaviorEntryMapper {
 
-    ApBehaviorEntry selectByUserIdOrEquipment(@Param("userId") Long userId, @Param("equipmentId") int equipmentId);
+    ApBehaviorEntry selectByUserIdOrEquipment(@Param("userId") Long userId, @Param("equipmentId") Integer equipmentId);
 }

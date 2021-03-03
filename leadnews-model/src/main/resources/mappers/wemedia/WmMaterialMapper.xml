@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bin.model.mappers.wemedia.WmMaterialMapper" >
+    <resultMap id="BaseResultMap" type="com.bin.model.media.pojos.WmMaterial" >
+        <id column="id" property="id" />
+        <result column="user_id" property="userId"/>
+        <result column="url" property="url"/>
+        <result column="type" property="type"/>
+        <result column="is_collection" property="isCollection"/>
+        <result column="created_time" property="createdTime"/>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, user_id, url, type, is_collection, created_time
+</sql>
+    <insert id="insertPicture" parameterType="com.bin.model.media.pojos.WmMaterial" useGeneratedKeys="true" keyProperty="id">
+        insert into wm_material(user_id, url, type, is_collection, created_time)
+        values(#{userId}, #{url}, #{type}, #{isCollection}, #{createdTime})
+    </insert>
+    <update id="updateStatusByUidAndId">
+        update wm_material
+        set is_collection = #{type}
+        where id = #{id} and user_id = #{userId}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="integer">
+        delete from wm_material where id = #{id}
+    </delete>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="integer">
+        select
+         <include refid="Base_Column_List"/>
+          from wm_material
+          where id = #{id}
+    </select>
+    <select id="findListByUidAndStatus" resultMap="BaseResultMap">
+        select
+         <include refid="Base_Column_List"/>
+          from wm_material
+          where user_id = #{userId}
+          <if test="dto.isCollection == 1">
+            and is_collection = #{dto.isCollection}
+          </if>
+         limit ${(dto.page - 1) * dto.size}, ${dto.size}
+    </select>
+    <select id="countListByUidAndStatus" resultType="java.lang.Integer">
+        select count(0)
+        from wm_material
+        where user_id = #{userId}
+        <if test="dto.isCollection == 1">
+            and is_collection = #{dto.isCollection}
+        </if>
+    </select>
+
+
+</mapper>
