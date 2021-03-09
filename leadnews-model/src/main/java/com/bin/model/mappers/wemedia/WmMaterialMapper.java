@@ -4,6 +4,7 @@ import com.bin.model.media.dtos.WmMaterialListDto;
 import com.bin.model.media.pojos.WmMaterial;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,5 +25,7 @@ public interface WmMaterialMapper {
     int countListByUidAndStatus(@Param("dto")WmMaterialListDto dto, @Param("userId")Long userId);
 
     int updateStatusByUidAndId(@Param("id")Integer id, @Param("userId")Long userId, @Param("type")Short type);
+
+    List<WmMaterial> findMaterialByUserIdAndImageUrl(@Param("userId") Long userId, @Param("imageUrls") Collection<Object> imageUrls);
 
 }

@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021/2/25 11:55
  */
 @Configuration
-@ServletComponentScan("com.bin.common.web.app.security")
+@ServletComponentScan("com.bin.common.web.wm.security")
 public class SecurityConfig {
 }

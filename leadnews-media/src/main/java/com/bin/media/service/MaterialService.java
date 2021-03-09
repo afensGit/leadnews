@@ -3,6 +3,8 @@ package com.bin.media.service;
 import com.bin.model.common.dtos.ResponseResult;
 import com.bin.model.media.dtos.WmMaterialDto;
 import com.bin.model.media.dtos.WmMaterialListDto;
+import com.bin.model.media.dtos.WmNewsDto;
+import com.bin.model.media.pojos.WmNews;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -39,4 +41,5 @@ public interface MaterialService {
      * @return
      */
     ResponseResult changeUserMaterialStatus(WmMaterialDto dto, Short type);
+
 }

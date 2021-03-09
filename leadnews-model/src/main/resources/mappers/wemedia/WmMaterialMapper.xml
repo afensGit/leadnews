@@ -35,8 +35,8 @@
          <include refid="Base_Column_List"/>
           from wm_material
           where user_id = #{userId}
-          <if test="dto.isCollection == 1">
-            and is_collection = #{dto.isCollection}
+          <if test="dto.isCollected == 1">
+            and is_collection = #{dto.isCollected}
           </if>
          limit ${(dto.page - 1) * dto.size}, ${dto.size}
     </select>
@@ -44,9 +44,18 @@
         select count(0)
         from wm_material
         where user_id = #{userId}
-        <if test="dto.isCollection == 1">
-            and is_collection = #{dto.isCollection}
+        <if test="dto.isCollected == 1">
+            and is_collection = #{dto.isCollected}
         </if>
+    </select>
+    <select id="findMaterialByUserIdAndImageUrl" resultMap="BaseResultMap">
+        select id, url 
+        from wm_material 
+        where user_id = #{userId} and url in
+        <foreach collection="imageUrls" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
     </select>
 
 

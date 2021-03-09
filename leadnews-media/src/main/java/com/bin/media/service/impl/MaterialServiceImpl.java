@@ -8,11 +8,13 @@ import com.bin.model.mappers.wemedia.WmMaterialMapper;
 import com.bin.model.mappers.wemedia.WmNewsMaterialMapper;
 import com.bin.model.media.dtos.WmMaterialDto;
 import com.bin.model.media.dtos.WmMaterialListDto;
+import com.bin.model.media.dtos.WmNewsDto;
 import com.bin.model.media.pojos.WmMaterial;
 import com.bin.model.media.pojos.WmUser;
 import com.bin.utils.threadlocal.WmThreadLocalUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -50,15 +52,21 @@ public class MaterialServiceImpl implements MaterialService {
     public ResponseResult uploadPicture(MultipartFile file) {
         WmUser user = WmThreadLocalUtils.getUser();
         if (file == null){
+            //参数无效
             return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID);
         }
+        //获取文件名
         String originalFilename = file.getOriginalFilename();
+        //获取文件后缀名（图片格式）
         String extName = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         if (!extName.matches("(gif|png|jpg|jpeg)")){
+            //图片格式有误
             return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_IMAGE_FORMAT_ERROR);
         }
         String filename = null;
         try {
+            //group_name=group1, remote_filename=M00/00/00/rB6qWWBA4yaAD9_CAAAAGI4iG5E667.txt
+            //返回组名和文件名的组合
             filename = fastDfsClient.uploadFile(file.getBytes(), extName);
         } catch (Exception e) {
             //e.printStackTrace();
@@ -134,4 +142,6 @@ public class MaterialServiceImpl implements MaterialService {
         wmMaterialMapper.updateStatusByUidAndId(dto.getId(), user.getId(), type);
         return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
     }
+
+
 }
