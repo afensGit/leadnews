@@ -2,6 +2,9 @@ package com.bin.model.admin.dtos;
 
 import lombok.Data;
 
+/**
+ * @author huangbin
+ */
 @Data
 public class CommonWhereDto {
 

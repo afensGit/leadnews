@@ -21,6 +21,7 @@
         <module>leadnews-user</module>
         <module>leadnews-login</module>
         <module>leadnews-media</module>
+        <module>leadnews-admin</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -260,8 +261,8 @@
                     <groupId>com.baidu</groupId>
                     <artifactId>aip-java-sdk</artifactId>
                     <version>${baidu.version}</version>
-                    <scope>system</scope>
-                    <systemPath>${project.basedir}/../sdk-jar/baidu/aip-java-sdk-4.11.1.jar</systemPath>
+<!--                    <scope>system</scope>-->
+<!--                    <systemPath>${project.basedir}/../sdk-jar/baidu/aip-java-sdk-4.11.1.jar</systemPath>-->
                 </dependency>
                 <!-- fastdfs客服端 -->
                 <dependency>

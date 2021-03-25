@@ -43,7 +43,7 @@ public class BehaviorController implements BehaviorControllerApi {
      * @param dto
      */
     @Override
-    @PostMapping("/save_behavior")
+    @PostMapping("/show_behavior")
     public ResponseResult saveShowBehavior(@RequestBody ShowBehaviorDto dto) {
         ResponseResult result = appShowBehaviorService.saveShowBehavior(dto);
         return result;

@@ -9,7 +9,11 @@ import com.bin.model.common.dtos.ResponseResult;
  * @date 2021/2/22 23:15
  */
 public interface AppArticleInfoControllerApi {
-
+    /**
+     * 加载文章详细信息
+     * @param dto
+     * @return
+     */
     ResponseResult loadArticleInfo(ArticleInfoDto dto);
 
     ResponseResult loadArticleBehavior(ArticleInfoDto dto);

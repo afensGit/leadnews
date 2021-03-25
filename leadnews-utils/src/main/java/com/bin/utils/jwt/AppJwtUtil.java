@@ -141,7 +141,7 @@ public class AppJwtUtil {
 
     public static void main(String[] args) {
         ApUser user = new ApUser();
-        user.setId(1l);
+        user.setId(1L);
         System.out.println(AppJwtUtil.getToken(user));
     }
 

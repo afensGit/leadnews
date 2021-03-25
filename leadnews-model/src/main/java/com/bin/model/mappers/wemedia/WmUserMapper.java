@@ -13,5 +13,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface WmUserMapper {
 
+    /**
+     * 根据自媒体用户名查询自媒体用户，实现登录验证
+     * @param name
+     * @return
+     */
     WmUser selectByName(String name);
+
+    WmUser selectById(long id);
 }

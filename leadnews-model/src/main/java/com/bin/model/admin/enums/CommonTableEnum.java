@@ -2,6 +2,10 @@ package com.bin.model.admin.enums;
 
 import lombok.Getter;
 
+/**
+ * @author huangbin
+ */
+
 @Getter
 public enum CommonTableEnum {
     AD_CHANNEL("*",true,true,true,true),
@@ -12,6 +16,7 @@ public enum CommonTableEnum {
     AP_USER("*",true,false,true,false);
 
     String filed;
+
     boolean list;//开启列表权限？
     boolean add;//开启增加权限？
     boolean update;//开启修改权限？

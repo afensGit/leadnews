@@ -30,6 +30,13 @@
           where name = #{name}
           limit 1
     </select>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wm_user
+        where
+        id = #{id}
+    </select>
 
 
 </mapper>
