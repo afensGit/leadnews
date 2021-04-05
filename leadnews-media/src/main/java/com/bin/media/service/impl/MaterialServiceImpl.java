@@ -59,9 +59,9 @@ public class MaterialServiceImpl implements MaterialService {
         String originalFilename = file.getOriginalFilename();
         //获取文件后缀名（图片格式）
         String extName = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
-        if (!extName.matches("(gif|png|jpg|jpeg)")){
+        if (!extName.matches("(gif|png|jpg|jpeg|JPG)")){
             //图片格式有误
-            return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_IMAGE_FORMAT_ERROR);
+            return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_IMAGE_FORMAT_ERROR,"图片格式有误");
         }
         String filename = null;
         try {

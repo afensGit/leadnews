@@ -11,7 +11,14 @@ public class SubmitArticleAuto {
     private Integer articleId;
 
     public enum ArticleType{
-        WEMEDIA,CRAWLER;
+        /**
+         * 自媒体文章类型
+         */
+        WEMEDIA,
+        /**
+         * 爬虫文章类型
+         */
+        CRAWLER;
     }
 
 }

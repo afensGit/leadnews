@@ -10,6 +10,17 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ApArticleConfigMapper {
-
+    /**
+     * 根据文章id查询文章信息
+     * @param articleId
+     * @return
+     */
     ApArticleConfig selectConfigByArticleId(int articleId);
+
+    /**
+     * 添加文章信息
+     * @param articleConfig
+     * @return
+     */
+    Integer insert(ApArticleConfig articleConfig);
 }

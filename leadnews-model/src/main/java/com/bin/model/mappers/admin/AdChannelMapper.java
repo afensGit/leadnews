@@ -19,4 +19,11 @@ public interface AdChannelMapper {
      */
     List<AdChannel> selectAll();
 
+    /**
+     * 根据id查询频道
+     * @param id
+     * @return
+     */
+    AdChannel selectByPrimaryKey(Integer id);
+
 }

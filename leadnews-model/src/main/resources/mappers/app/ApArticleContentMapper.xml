@@ -12,6 +12,9 @@
     <sql id="Blob_Column_List" >
     content
   </sql>
+    <insert id="insert" parameterType="com.bin.model.article.pojos.ApArticleContent">
+        insert into ap_article_content (article_id,content) values (#{articleId}, #{content})
+    </insert>
     <select id="selectArticleById" resultType="com.bin.model.article.pojos.ApArticleContent">
         select
         <include refid="Base_Column_List"/>

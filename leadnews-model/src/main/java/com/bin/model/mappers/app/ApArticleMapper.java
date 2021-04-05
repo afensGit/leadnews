@@ -46,7 +46,10 @@ public interface ApArticleMapper {
      */
     List<ApArticle> loadArticleListByIdListV2(List<Integer> list);
 
-
+    /**
+     * 添加文章
+     * @param apArticle
+     */
     void insert(ApArticle apArticle);
 
     List<Integer> findByAuthorId(Integer apAuthorId);
@@ -79,5 +82,7 @@ public interface ApArticleMapper {
      * @return
      */
     List<ApArticleSDto> selectListForStatistic();
+
+
 
 }

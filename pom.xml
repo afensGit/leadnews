@@ -258,6 +258,16 @@
                 </dependency>
                 <!-- 阿里SDK  -->
                 <dependency>
+                    <groupId>com.aliyun</groupId>
+                    <artifactId>aliyun-java-sdk-core</artifactId>
+                    <version>4.1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.aliyun</groupId>
+                    <artifactId>aliyun-java-sdk-green</artifactId>
+                    <version>3.4.1</version>
+                </dependency>
+                <dependency>
                     <groupId>com.baidu</groupId>
                     <artifactId>aip-java-sdk</artifactId>
                     <version>${baidu.version}</version>
@@ -326,6 +336,13 @@
                     <version>${kafka.version}</version>
                     <scope>test</scope>
                 </dependency>
+                <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka-test -->
+<!--                <dependency>-->
+<!--                    <groupId>org.springframework.kafka</groupId>-->
+<!--                    <artifactId>spring-kafka-test</artifactId>-->
+<!--                    <version>2.6.6</version>-->
+<!--                    <scope>test</scope>-->
+<!--                </dependency>-->
                 <dependency>
                     <groupId>org.apache.kafka</groupId>
                     <artifactId>kafka-clients</artifactId>

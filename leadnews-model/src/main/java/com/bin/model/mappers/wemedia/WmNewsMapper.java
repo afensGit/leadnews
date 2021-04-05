@@ -60,4 +60,11 @@ public interface WmNewsMapper {
      * @return
      */
     int deleteNewsById(Integer id);
+
+    /**
+     * 更新自媒体文章信息
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKeySelective(WmNews record);
 }

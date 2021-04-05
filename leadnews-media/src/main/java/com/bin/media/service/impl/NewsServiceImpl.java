@@ -1,6 +1,8 @@
 package com.bin.media.service.impl;
 
+import com.bin.common.kafka.messages.SubmitArticleAuthMessage;
 import com.bin.media.constans.WmMediaConstans;
+import com.bin.media.kafka.AdminMessageSend;
 import com.bin.media.service.NewsService;
 import com.bin.model.common.dtos.PageResponseResult;
 import com.bin.model.common.dtos.ResponseResult;
@@ -13,6 +15,7 @@ import com.bin.model.media.dtos.WmNewsPageReqDto;
 import com.bin.model.media.pojos.WmMaterial;
 import com.bin.model.media.pojos.WmNews;
 import com.bin.model.media.pojos.WmUser;
+import com.bin.model.mess.admin.SubmitArticleAuto;
 import com.bin.utils.threadlocal.WmThreadLocalUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -46,6 +49,9 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private WmMaterialMapper wmMaterialMapper;
 
+    @Autowired
+    private AdminMessageSend adminMessageSend;
+
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${FILE_SERVER_URL}")
@@ -75,7 +81,7 @@ public class NewsServiceImpl implements NewsService {
         //获取文章中的图片信息
         Map<String, Object> imageMap = extractUrlInfo(list);
         Map<String,Object> materials = (Map<String, Object>)imageMap.get("materials");
-        int imageNum = (int)imageMap.get("imageNum");
+        int imageNum = (int) imageMap.get("imageNum");
         //保存文章发布信息
         WmNews wmNews = new WmNews();
         BeanUtils.copyProperties(dto, wmNews);
@@ -264,11 +270,17 @@ public class NewsServiceImpl implements NewsService {
         wmNews.setCreatedTime(new Date());
         wmNews.setPublishTime(new Date());
         //wmNews.setEnable(WmMediaConstans.WM_NEWS_SUMMIT_STATUS);
-
+        int temp = -1;
         if (wmNews.getId() == null){
-            wmNewsMapper.insertNewsForEdit(wmNews);
+            temp = wmNewsMapper.insertNewsForEdit(wmNews);
         }else {
-            wmNewsMapper.updateNewsByPrimaryKey(wmNews);
+            temp = wmNewsMapper.updateNewsByPrimaryKey(wmNews);
+        }
+        if (temp == 1 && WmMediaConstans.WM_NEWS_SUMMIT_STATUS == 1){
+            SubmitArticleAuto articleAuto = new SubmitArticleAuto();
+            articleAuto.setArticleId(wmNews.getId());
+            articleAuto.setType(SubmitArticleAuto.ArticleType.WEMEDIA);
+            adminMessageSend.sendMessage(new SubmitArticleAuthMessage(articleAuto));
         }
     }
 

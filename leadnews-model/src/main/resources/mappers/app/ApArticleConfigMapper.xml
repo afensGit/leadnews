@@ -12,6 +12,10 @@
     <sql id="Base_Column_List" >
     id, article_id, is_comment, is_forward, is_down, is_delete
   </sql>
+    <insert id="insert" parameterType="com.bin.model.article.pojos.ApArticleConfig">
+        insert into ap_article_config (article_id,is_comment,is_forward,is_down,is_delete)
+        values(#{articleId},#{isComment},#{isForward},#{isDown},#{isDelete})
+    </insert>
     <select id="selectConfigByArticleId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
