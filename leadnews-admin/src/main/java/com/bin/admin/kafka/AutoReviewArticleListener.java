@@ -1,5 +1,6 @@
 package com.bin.admin.kafka;
 
+import com.bin.admin.service.ReviewCrawlerArticleService;
 import com.bin.admin.service.ReviewMediaArticleService;
 import com.bin.common.kafka.KafkaListener;
 import com.bin.common.kafka.KafkaTopicConfig;
@@ -28,6 +29,9 @@ public class AutoReviewArticleListener implements KafkaListener<String, String> 
 
     ObjectMapper objectMapper = new ObjectMapper();
 
+    @Autowired
+    private ReviewCrawlerArticleService reviewCrawlerArticleService;
+
     @Override
     public String topic() {
         return kafkaTopicConfig.getSubmitArticleAuth();
@@ -45,7 +49,18 @@ public class AutoReviewArticleListener implements KafkaListener<String, String> 
                 if (type == SubmitArticleAuto.ArticleType.WEMEDIA){
                     Integer articleId = articleAuthMessage.getData().getArticleId();
                     if (articleId != null){
+                        //审核文章信息
                         reviewMediaArticleService.autoReviewMediaArticle(articleId);
+                    }
+                }else if(type==SubmitArticleAuto.ArticleType.CRAWLER){
+                    Integer articleId = articleAuthMessage.getData().getArticleId();
+                    if(articleId!=null){
+                        //审核文章信息
+                        try {
+                            reviewCrawlerArticleService.autoReviewArticleByCrawler(articleId);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

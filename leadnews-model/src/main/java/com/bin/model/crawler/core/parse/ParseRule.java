@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 抓取内容封装
+ * @author huangbin
  */
 public class ParseRule {
     /**

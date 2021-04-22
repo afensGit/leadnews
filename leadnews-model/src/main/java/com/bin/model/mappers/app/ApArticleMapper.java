@@ -83,6 +83,18 @@ public interface ApArticleMapper {
      */
     List<ApArticleSDto> selectListForStatistic();
 
+    /**
+     * 更新文章数
+     * @param articleId
+     * @param viewCount
+     * @param collectCount
+     * @param commentCount
+     * @param likeCount
+     * @return
+     */
+    int updateArticleView(@Param("articleId") Integer articleId,@Param("viewCount") long viewCount,@Param("collectCount") long collectCount,@Param("commentCount") long commentCount,@Param("likeCount") long likeCount);
+
+
 
 
 }

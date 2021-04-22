@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.listener.LoggingErrorHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author huangbin
+ */
 @Component
 public class RetryErrorHandler extends LoggingErrorHandler {
     private static Logger logger = LoggerFactory.getLogger(RetryErrorHandler.class);

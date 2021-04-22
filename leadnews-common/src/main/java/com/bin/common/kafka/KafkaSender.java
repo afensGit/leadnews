@@ -1,6 +1,8 @@
 package com.bin.common.kafka;
 
 import com.bin.common.kafka.messages.SubmitArticleAuthMessage;
+import com.bin.common.kafka.messages.app.ApHotArticleMessage;
+import com.bin.model.article.pojos.ApHotArticles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,5 +58,25 @@ public class KafkaSender {
 
     public void sendSubmitArticleAuthMessage(SubmitArticleAuthMessage message){
         this.sendMessage(kafkaTopicConfig.getSubmitArticleAuth(), UUID.randomUUID().toString(), message);
+    }
+
+    /**
+     * 发送修改文章请求消息
+     *
+     * @param message
+     */
+    public void sendArticleUpdateBus(KafkaMessage message) {
+        this.sendMessage(kafkaTopicConfig.getArticleUpdateBus(), UUID.randomUUID().toString(), message);
+    }
+
+    /**
+     * 发送处理热文章图片信息
+     *
+     * @param message
+     */
+    public void sendHotArticleMessage(ApHotArticles message) {
+        ApHotArticleMessage temp = new ApHotArticleMessage();
+        temp.setData(message);
+        this.sendMessage(kafkaTopicConfig.getHotArticle(), UUID.randomUUID().toString(), temp);
     }
 }

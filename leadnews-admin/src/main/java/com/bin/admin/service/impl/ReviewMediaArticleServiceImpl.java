@@ -144,6 +144,7 @@ public class ReviewMediaArticleServiceImpl implements ReviewMediaArticleService 
                     }else {
                         reviewSuccessSaveAll(wmNews);
                     }
+                    break;
 
                 case 4:
                     reviewSuccessSaveAll(wmNews);
@@ -158,7 +159,6 @@ public class ReviewMediaArticleServiceImpl implements ReviewMediaArticleService 
                     return;
             }
         }
-
     }
 
     private void reviewSuccessSaveAll(WmNews wmNews) {

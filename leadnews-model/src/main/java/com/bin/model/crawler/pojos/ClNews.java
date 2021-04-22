@@ -7,6 +7,7 @@ import java.util.Date;
 
 /**
  * 文章
+ * @author huangbin
  */
 public class ClNews {
     private Integer id;
@@ -25,6 +26,7 @@ public class ClNews {
     private Integer articleId;
     private Integer no;
     private String content;
+    private String labelIds;
     public String getUnCompressContent() {
         if (StringUtils.isNotEmpty(content)) {
             return ZipUtils.gunzip(content);
@@ -159,5 +161,13 @@ public class ClNews {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getLabelIds() {
+        return labelIds;
+    }
+
+    public void setLabelIds(String labelIds) {
+        this.labelIds = labelIds;
     }
 }

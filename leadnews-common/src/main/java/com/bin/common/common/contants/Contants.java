@@ -1,13 +1,16 @@
 package com.bin.common.common.contants;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * 项目工程通用常量定义类；
  * 如是模块通用，请定义在自模块常量类中；
+ * @author huangbin
  */
 public class Contants {
 
     // 项目名称
-    public static String APP_NAME = "新闻头条-leadnews";
+    public static String APP_NAME = "APP_NAME";
     // 项目字符集编码
     public  final static String CHARTER_NAME = "UTF-8";
     // 当前项目激活的环境
@@ -20,5 +23,10 @@ public class Contants {
     public static boolean isProd(){
         return "prod".equalsIgnoreCase(PROFILE_NAME);
     }
+
+    /**
+     * 默认的全局通用Mapper
+     */
+    public static ObjectMapper objectMapper = null;
 
 }

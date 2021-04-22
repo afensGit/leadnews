@@ -2,6 +2,9 @@ package com.bin.model.crawler.pojos;
 
 import lombok.Data;
 import java.util.Date;
+/**
+ * @author huangbin
+ */
 @Data
 public class ClIpPool {
     private Integer id;

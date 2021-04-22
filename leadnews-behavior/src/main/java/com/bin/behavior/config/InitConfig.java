@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("com.bin.common.common.init")
+@ComponentScan({"com.bin.common.common.init","com.bin.common.kafka"})
 public class InitConfig {
 }

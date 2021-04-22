@@ -15,6 +15,17 @@ import java.util.List;
 
 @Mapper
 public interface ApAssociateWordsMapper {
-
+    /**
+     * 模糊查询联想词
+     * @param searchWord
+     * @param limit
+     * @return
+     */
     List<ApAssociateWords> selectByAssociateWords(@Param("searchWord")String searchWord, @Param("limit")Integer limit);
+
+    /**
+     * 查询所有联想词
+     * @return
+     */
+    List<ApAssociateWords> selectAllAssociateWords();
 }

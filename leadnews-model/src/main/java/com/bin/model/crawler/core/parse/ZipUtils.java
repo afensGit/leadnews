@@ -7,6 +7,7 @@ import java.util.zip.*;
 
 /**
  * 字符串压缩
+ * @author huangbin
  */
 public class ZipUtils {
 
@@ -108,8 +109,9 @@ public class ZipUtils {
      * @return 返回压缩后的文本
      */
     public static final String zip(String str) {
-        if (str == null)
+        if (str == null) {
             return null;
+        }
         byte[] compressed;
         ByteArrayOutputStream out = null;
         ZipOutputStream zout = null;

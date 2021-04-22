@@ -5,6 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author huangbin
+ */
 public class HtmlStyle {
     private Map<String, String> styleMap = new HashMap<>();
 

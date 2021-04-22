@@ -10,5 +10,5 @@ import com.bin.model.user.pojos.ApUser;
  */
 public interface LoginControllerApi {
 
-    ResponseResult login(ApUser user);
+    public ResponseResult login(ApUser user);
 }

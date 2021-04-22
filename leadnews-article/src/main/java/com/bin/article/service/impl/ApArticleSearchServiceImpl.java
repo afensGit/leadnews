@@ -1,6 +1,8 @@
 package com.bin.article.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.bin.article.service.ApArticleSearchService;
+import com.bin.article.utils.Trie;
 import com.bin.model.article.dtos.UserSearchDto;
 import com.bin.model.article.pojos.ApArticle;
 import com.bin.model.article.pojos.ApAssociateWords;
@@ -14,6 +16,7 @@ import com.bin.model.user.pojos.ApUser;
 import com.bin.model.user.pojos.ApUserSearch;
 import com.bin.utils.common.DateUtils;
 import com.bin.utils.threadlocal.AppThreadLocalUtils;
+import com.google.common.collect.Lists;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
@@ -24,6 +27,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -57,6 +61,9 @@ public class ApArticleSearchServiceImpl implements ApArticleSearchService {
     @Autowired
     @Qualifier("jestClient")
     private JestClient jestClient;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Autowired
     private ApArticleMapper apArticleMapper;
@@ -188,5 +195,33 @@ public class ApArticleSearchServiceImpl implements ApArticleSearchService {
             return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID);
         }
         return ResponseResult.okResult(entry.getId());
+    }
+
+    @Override
+    public ResponseResult searchAssociateV2(UserSearchDto dto) {
+        if(dto.getPageSize()>50){
+            return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID);
+        }
+        String associateStr = redisTemplate.opsForValue().get("associate_list");
+        List<ApAssociateWords> aw = null;
+        if(StringUtils.isNotEmpty(associateStr) && !"[]".equals(associateStr)){
+            aw = JSON.parseArray(associateStr, ApAssociateWords.class);
+        }else{
+            aw = apAssociateWordsMapper.selectAllAssociateWords();
+            redisTemplate.opsForValue().set("associate_list", JSON.toJSONString(aw));
+        }
+        //needed cache trie
+        Trie t = new Trie();
+        for (ApAssociateWords a : aw){
+            t.insert(a.getAssociateWords());
+        }
+        List<String> ret = t.startWith(dto.getSearchWords());
+        List<ApAssociateWords> wrapperList = Lists.newArrayList();
+        for(String s : ret){
+            ApAssociateWords apAssociateWords = new ApAssociateWords();
+            apAssociateWords.setAssociateWords(s);
+            wrapperList.add(apAssociateWords);
+        }
+        return ResponseResult.okResult(wrapperList);
     }
 }

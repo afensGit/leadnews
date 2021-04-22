@@ -40,7 +40,7 @@ public class EsTest {
     public void testSave() throws IOException {
 
         ArticleHomeDto dto = new ArticleHomeDto();
-        dto.setSize(50);
+        dto.setSize(100);
         dto.setTag("__all__");
         dto.setMinBehotTime(new Date());
         dto.setMaxBehotTime(new Date());

@@ -22,6 +22,9 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 import javax.sql.DataSource;
 
+/**
+ * @author huangbin
+ */
 @Setter
 @Getter
 @Aspect

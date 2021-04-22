@@ -4,6 +4,8 @@ import com.bin.model.behavior.pojos.ApBehaviorEntry;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author huangbin
  * @version 1.0
@@ -14,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
 public interface ApBehaviorEntryMapper {
 
     ApBehaviorEntry selectByUserIdOrEquipment(@Param("userId") Long userId, @Param("equipmentId") Integer equipmentId);
+
+    List<ApBehaviorEntry> selectAllEntry();
 }

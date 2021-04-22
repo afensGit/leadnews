@@ -2,6 +2,9 @@ package com.bin.model.crawler.core.cookie;
 
 import java.util.Date;
 
+/**
+ * @author huangbin
+ */
 public class CrawlerCookie {
 
     public CrawlerCookie() {

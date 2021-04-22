@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 代理IP实体类
+ * @author huangbin
  */
 public class CrawlerProxy implements Serializable {
 

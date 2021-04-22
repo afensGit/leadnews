@@ -52,6 +52,18 @@
 		<table name="ADMIN_QRTZ_SIMPLE_TRIGGERS" dataNode="DNSQ" type="global"/>
 		<table name="ADMIN_QRTZ_SIMPROP_TRIGGERS" dataNode="DNSQ" type="global"/>
 		<table name="ADMIN_QRTZ_TRIGGERS" dataNode="DNSQ" type="global"/>
+		<!-- 通用调度器ARTICLE_QRTZ服务的调度表 -->
+		<table name="ARTICLE_QRTZ_BLOB_TRIGGERS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_CALENDARS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_CRON_TRIGGERS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_FIRED_TRIGGERS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_JOB_DETAILS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_LOCKS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_PAUSED_TRIGGER_GRPS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_SCHEDULER_STATE" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_SIMPLE_TRIGGERS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_SIMPROP_TRIGGERS" dataNode="DNSQ" type="global"/>
+		<table name="ARTICLE_QRTZ_TRIGGERS" dataNode="DNSQ" type="global"/>
 		<!-- app_info -->
 		<table name="ap_article" dataNode="DNAP_$0-39" autoIncrement="true" primaryKey="id" rule="mod-long40"/>
 
@@ -254,7 +266,7 @@
 	<dataHost name="HOST0" maxCon="600" minCon="200" balance="0"
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
-		<writeHost host="HOST0_M" url="47.118.64.33:3306" user="root" password="root"/>
+		<writeHost host="HOST0_M" url="127.0.0.1:3308" user="root" password="root"/>
 	</dataHost>
 
 </mycat:schema>

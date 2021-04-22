@@ -12,6 +12,7 @@ import java.util.Set;
 
 /**
  * 扫描所有的kafkamessage类
+ * @author huangbin
  */
 @Log4j2
 @Component

@@ -1,6 +1,8 @@
 package com.bin.behavior.service.impl;
 
+import com.bin.behavior.kafka.BehaviorMessageSender;
 import com.bin.behavior.service.AppReadBehaviorService;
+import com.bin.common.kafka.messages.behavior.UserReadMessage;
 import com.bin.common.zookeeper.sequence.Sequences;
 import com.bin.model.behavior.dtos.ReadBehaviorDto;
 import com.bin.model.behavior.pojos.ApBehaviorEntry;
@@ -34,6 +36,9 @@ public class AppReadBehaviorServiceImpl implements AppReadBehaviorService {
     @Autowired
     private Sequences sequences;
 
+    @Autowired
+    private BehaviorMessageSender behaviorMessageSender;
+
     @Override
     public ResponseResult saveReadBehavior(ReadBehaviorDto dto) {
         ApUser user = AppThreadLocalUtils.getUser();
@@ -52,6 +57,7 @@ public class AppReadBehaviorServiceImpl implements AppReadBehaviorService {
         }
         ApReadBehavior readBehavior = apReadBehaviorMapper.selectByEntryId(BurstUtils.groudOne(entry.getId()), entry.getId(), dto.getArticleId());
         boolean flag = false;
+        int count = -1;
         if (readBehavior == null){
             flag = true;
             readBehavior.setId(sequences.sequenceApReadBehavior());
@@ -63,7 +69,16 @@ public class AppReadBehaviorServiceImpl implements AppReadBehaviorService {
             readBehavior.setReadDuration(dto.getReadDuration());
             readBehavior.setBurst(BurstUtils.encrypt(readBehavior.getId(), readBehavior.getEntryId()));
 
+            if (flag){
+                count = apReadBehaviorMapper.insert(readBehavior);
+                if (count == 1){
+                    behaviorMessageSender.sendMessageReduce(new UserReadMessage(readBehavior), userId, true);
+                }
+            }else{
+                count = apReadBehaviorMapper.update(readBehavior);
+            }
+
         }
-        return ResponseResult.okResult(flag ? apReadBehaviorMapper.insert(readBehavior) : apReadBehaviorMapper.update(readBehavior));
+        return ResponseResult.okResult(count);
     }
 }

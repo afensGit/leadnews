@@ -24,5 +24,8 @@
         </if>
     </select>
 
-
+    <!-- 查询所有 -->
+    <select id="selectAllEntry" resultMap="BaseResultMap" >
+        select * from ap_behavior_entry
+    </select>
 </mapper>

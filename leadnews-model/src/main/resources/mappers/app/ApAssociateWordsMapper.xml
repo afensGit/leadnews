@@ -18,5 +18,10 @@
          limit #{limit}
     </select>
 
+    <select id="selectAllAssociateWords" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from ap_associate_words
+    </select>
 
 </mapper>

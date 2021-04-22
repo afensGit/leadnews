@@ -1,29 +1,35 @@
 package com.bin.model.crawler.core.cookie;
 
+import com.bin.model.crawler.core.proxy.CrawlerProxy;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.List;
 
+/**
+ * @author huangbin
+ */
+@Setter
+@Getter
+@ToString
 public class CrawlerHtml {
 
+    public CrawlerHtml() {
+    }
+
+    public CrawlerHtml(String url) {
+        this.url = url;
+    }
+
+
+    private String url;
 
     private String html;
 
+    private CrawlerProxy proxy;
+
     private List<CrawlerCookie> crawlerCookieList = null;
 
-
-    public String getHtml() {
-        return html;
-    }
-
-    public void setHtml(String html) {
-        this.html = html;
-    }
-
-    public List<CrawlerCookie> getCrawlerCookieList() {
-        return crawlerCookieList;
-    }
-
-
-    public void setCrawlerCookieList(List<CrawlerCookie> crawlerCookieList) {
-        this.crawlerCookieList = crawlerCookieList;
-    }
 }
+

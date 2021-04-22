@@ -5,6 +5,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+/**
+ * @author huangbin
+ */
 @Data
 @Configuration
 @ConfigurationProperties(prefix="kafka.topic")
@@ -12,5 +15,9 @@ import org.springframework.context.annotation.PropertySource;
 public class KafkaTopicConfig {
     //String adminTest;
 
-    String submitArticleAuth;
+    private String submitArticleAuth;
+    private String articleAuditSuccess;
+    private String articleUpdateBus;
+    private String articleIncrHandle;
+    private String hotArticle;
 }

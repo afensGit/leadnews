@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * 文章评论
+ * @author huangbin
  */
 @Data
 public class ClNewsComment implements Serializable {

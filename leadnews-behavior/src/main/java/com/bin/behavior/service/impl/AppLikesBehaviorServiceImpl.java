@@ -1,6 +1,8 @@
 package com.bin.behavior.service.impl;
 
+import com.bin.behavior.kafka.BehaviorMessageSender;
 import com.bin.behavior.service.AppLikesBehaviorService;
+import com.bin.common.kafka.messages.behavior.UserLikesMessage;
 import com.bin.common.zookeeper.sequence.Sequences;
 import com.bin.model.behavior.dtos.LikesBehaviorDto;
 import com.bin.model.behavior.pojos.ApBehaviorEntry;
@@ -35,6 +37,9 @@ public class AppLikesBehaviorServiceImpl implements AppLikesBehaviorService {
     @Autowired
     private ApLikesBehaviorMapper apLikesBehaviorMapper;
 
+    @Autowired
+    private BehaviorMessageSender behaviorMessageSender;
+
     @Override
     public ResponseResult saveLikesBehavior(LikesBehaviorDto dto) {
         ApUser user = AppThreadLocalUtils.getUser();
@@ -59,7 +64,14 @@ public class AppLikesBehaviorServiceImpl implements AppLikesBehaviorService {
         likesBehavior.setOperation(dto.getOperation());
         likesBehavior.setType(dto.getType());
         likesBehavior.setBurst(BurstUtils.encrypt(likesBehavior.getId(), likesBehavior.getBehaviorEntryId()));
-
-        return ResponseResult.okResult(apLikesBehaviorMapper.insert(likesBehavior));
+        int insert = apLikesBehaviorMapper.insert(likesBehavior);
+        if (insert == 1){
+            if (likesBehavior.getOperation() == ApLikesBehavior.Operation.LIKE.getCode()){
+                behaviorMessageSender.sendMessagePlus(new UserLikesMessage(likesBehavior), userId, true );
+            }else if (likesBehavior.getOperation() == ApLikesBehavior.Operation.CANCEL.getCode()){
+                behaviorMessageSender.sendMessageReduce(new UserLikesMessage(likesBehavior), userId, true);
+            }
+        }
+        return ResponseResult.okResult(insert);
     }
 }

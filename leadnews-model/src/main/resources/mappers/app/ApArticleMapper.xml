@@ -130,7 +130,7 @@
         select * from ap_article where id in(
         <trim prefix="" suffixOverrides=",">
             <foreach item="item" collection="list" separator=",">
-                #{item},
+                #{item}
             </foreach>
         </trim>
         )
@@ -196,6 +196,15 @@
         from ap_article
         where publish_time &gt; #{lastDate}
     </select>
+
+    <update id="updateArticleView">
+        UPDATE ap_article SET
+        views = GREATEST(IFNULL(views,0) + #{viewCount}, #{viewCount}),
+        collection = GREATEST(IFNULL(collection,0) + #{collectCount}, #{collectCount}),
+        comment = GREATEST(IFNULL(comment,0) + #{commentCount}, #{commentCount}),
+        likes = GREATEST(IFNULL(likes,0) + #{likeCount}, #{likeCount})
+        WHERE id=#{articleId}
+    </update>
 
 
     <update id="updateSyncStatus">

@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * 回复
+ * @author huangbin
  */
 @Data
 public class ClNewsAdditional {
@@ -20,6 +21,8 @@ public class ClNewsAdditional {
     private Date createdTime;
     private Date count;
     private Date updatedTime;
+    private Date nextUpdateTime;
+    private Integer updateNum;
 
 
 }
